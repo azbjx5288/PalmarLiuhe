@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--corner_color 边角颜色，
+        scanner_color 扫描线颜色
+        possible_result_color 扫描点颜色
+        frame_color 扫描框边线颜色
+        mask_color 模糊区域颜色
+        label_text  框上方提示
+    -->
+    <declare-styleable name="ViewfinderView">
+        <attr name="corner_color" format="color"/>
+        <attr name="laser_color" format="color"/>
+        <attr name="frame_color" format="color" />
+        <attr name="mask_color" format="color" />
+        <attr name="result_point_color" format="color"/>
+        <attr name="result_color" format="color" />
+        <attr name="label_text_color" format="color"/>
+        <attr name="label_text" format="string"/>
+        <attr name="label_text_size" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleImageView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <!-- 文字收缩显示 -->
+    <declare-styleable name="ClickShowMoreLayout">
+        <attr name="show_line"
+            format="integer"/>
+        <attr name="click_text"
+            format="string"/>
+        <attr name="text_color"
+            format="color"/>
+        <attr name="text_size"
+            format="dimension"/>
+    </declare-styleable>
+
+    <!--显示点赞控件-->
+    <declare-styleable name="PraiseWidget">
+        <attr name="click_bg_color"
+            format="color"/>
+        <attr name="font_color"
+            format="color"/>
+        <attr name="font_size"
+            format="dimension"/>
+        <attr name="like_icon"
+            format="reference"/>
+    </declare-styleable>
+
+</resources>

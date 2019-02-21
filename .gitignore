@@ -1,0 +1,10 @@
+PalmarLiuHe.iml
+#.idea/libraries/Gradle____local_aars___E__Android_project_PalmarLiuHe_app_src_main_libs_Sunflower_jar_unspecified_jar.xml
+#.idea/libraries/Gradle____local_aars___E__Android_project_PalmarLiuHe_app_src_main_libs_Msc_jar_unspecified_jar.xml
+app/build/
+.gradle/
+.idea/
+app/build/
+library/build/
+*.iml
+local.properties

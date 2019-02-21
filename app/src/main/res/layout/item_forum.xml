@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/item"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingTop="14dp">
+
+    <ImageView
+        android:id="@+id/user_icon"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="11dp"
+        android:scaleType="centerCrop"
+        android:src="@mipmap/touxiang"/>
+
+    <LinearLayout
+        android:id="@+id/content_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/user_icon"
+        android:layout_toEndOf="@+id/user_icon"
+        android:paddingStart="10dp"
+        android:paddingEnd="15dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="#576b90"
+            android:textSize="17sp"
+            android:text="王教授"/>
+
+        <com.liuheonline.la.ui.widget.ClickShowMoreLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="18dp"
+            android:textSize="16sp"
+            app:show_line="5"
+            app:text_color="#111111"/>
+
+        <com.jaeger.ninegridimageview.NineGridImageView
+            android:id="@+id/grid_img"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            app:imgGap="4dp"
+            app:showStyle="grid"
+            app:singleImgSize="120dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/forum_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:textColor="#6e6e6e"
+                android:textSize="12sp"
+                android:text="2分钟前"/>
+
+            <TextView
+                android:id="@+id/delete_forum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:layout_toEndOf="@+id/forum_time"
+                android:textColor="#576b90"
+                android:textSize="13sp"
+                android:text="删除"/>
+
+
+            <LinearLayout
+                android:id="@+id/comment_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:padding="10dp">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/pinglunjiemianping"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
+    <!--praise && comment-->
+    <LinearLayout
+        android:id="@+id/comment_praise_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@id/content_linear"
+        android:layout_alignStart="@+id/content_linear"
+        android:background="@drawable/comment_praise"
+        android:orientation="vertical">
+        <com.liuheonline.la.ui.widget.PraiseWidget
+            android:id="@+id/praise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:lineSpacingMultiplier="1"
+            android:paddingBottom="3dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingTop="3dp"
+            app:font_color="#576b90"
+            app:click_bg_color="@color/comment_click_bg" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginTop="5dp"
+            android:background="#e1e1e1"
+            />
+
+        <com.liuheonline.la.ui.widget.commentwidget.CommentContentsLayout
+            android:id="@+id/comment_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            tools:background="@android:color/holo_red_dark"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_below="@+id/comment_praise_layout"
+        android:layout_marginTop="14dp"
+        android:background="#e1e1e1"/>
+
+</RelativeLayout>

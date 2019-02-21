@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_cs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_group_left_selector"
+            android:button="@null"
+            android:checked="true"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="彩色图库"
+            android:textColor="@drawable/color_radiobutton"
+            android:textSize="@dimen/sp_14" />
+
+        <RadioButton
+            android:id="@+id/rb_xj"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_group_selector"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="玄机图库"
+            android:textColor="@drawable/color_radiobutton"
+            android:textSize="@dimen/sp_14" />
+
+        <RadioButton
+            android:id="@+id/rb_hb"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_group_selector"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="黑白图库"
+            android:textColor="@drawable/color_radiobutton"
+            android:textSize="@dimen/sp_14" />
+
+        <RadioButton
+            android:id="@+id/rb_qn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@drawable/radio_group_right_selector"
+            android:button="@null"
+            android:checked="false"
+            android:gravity="center"
+            android:padding="@dimen/dp_10"
+            android:text="全年图库"
+            android:textColor="@drawable/color_radiobutton"
+            android:textSize="@dimen/sp_14" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/info_recycler"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

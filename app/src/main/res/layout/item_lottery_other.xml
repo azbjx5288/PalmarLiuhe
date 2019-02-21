@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <RelativeLayout
+        android:id="@+id/center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#e62324"
+            android:textSize="13sp"
+            android:text="特码A-3"/>
+
+        <TextView
+            android:id="@+id/text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/number"
+            android:textColor="#707070"
+            android:textSize="12sp"
+            android:text="赔率："/>
+
+        <TextView
+            android:id="@+id/odds"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/text1"
+            android:layout_toEndOf="@+id/text1"
+            android:textColor="#e62324"
+            android:textSize="12sp"
+            android:text="4.3"/>
+
+
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:layout_below="@+id/text1"
+            android:textColor="#707070"
+            android:textSize="12sp"
+            android:text="特码 1注/5元"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/edit_linear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginEnd="20dp"
+        android:layout_centerInParent="true"
+        android:gravity="center_vertical"
+        android:layout_toStartOf="@+id/clear_img"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/reduce"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/but_add_bg"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="-"/>
+
+        <TextView
+            android:id="@+id/money_text"
+            android:layout_width="60dp"
+            android:layout_height="25dp"
+            android:gravity="center"
+            android:paddingStart="3dp"
+            android:background="@drawable/bet_money_edit_bg"/>
+
+        <Button
+            android:id="@+id/add"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:background="@drawable/but_add_bg"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:text="+"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/clear_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:src="@mipmap/chachajkj"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="10dp"
+        android:src="@mipmap/xuxianfengexian"
+        android:layout_below="@id/center"/>
+
+</RelativeLayout>

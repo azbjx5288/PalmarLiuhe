@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.ysyy.aini.palmarliuhe">
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" /> <!-- 摄像头权限 -->
+    <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
+
+
+    <!-- 重力加速度传感器权限 -->
+    <uses-permission android:name="android.hardware.sensor.accelerometer" />
+    <!--极光推送相关权限-->
+    <permission
+        android:name="${applicationId}.permission.JPUSH_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <uses-permission android:name="${applicationId}.permission.JPUSH_MESSAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <!--//用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限-->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+
+    <application
+        android:name="com.liuheonline.la.ui.LiuHeApplication"
+        android:allowBackup="true"
+        android:icon="@mipmap/appicon"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/appicon"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="com.liuheonline.la.ui.launcher.LauncherActivity"
+            android:theme="@style/StartTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.liuheonline.la.ui.main.MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name="com.liuheonline.la.ui.history.HistoryActivity" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.ChooseLottery" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.LotteryTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.NumberTrend" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2Center" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2Desc" />
+        <activity android:name="com.liuheonline.la.ui.widget.LauncherWebView" />
+        <activity
+            android:name="com.liuheonline.la.ui.user.agency2.Agency2Manager"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustPan" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2Next" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.UpdateAgency" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2Price" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2Table" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.ZodiacTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.HeadageTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.FooterTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.OdevityTrend" />
+        <activity android:name="com.liuheonline.la.ui.user.register.DealActivity" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.AddTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.ColorTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.FiveElementsTrend" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.SizeTrend" />
+        <activity android:name="com.liuheonline.la.ui.infomation.InfomationDetails" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.ChoosePay" />
+        <activity android:name="com.liuheonline.la.ui.widget.BannerWebView" />
+        <activity android:name="com.liuheonline.la.ui.main.trend.TrendMap" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.LotteryStatistics" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.NumStatisticsInfo" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.NumStatisticsInfo2" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.ZodicStatisticsInfo" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.ZodicStatisticsInfo2" />
+        <activity android:name="com.liuheonline.la.ui.main.statistics.TailStatisticsInfo" />
+        <activity android:name="com.liuheonline.la.ui.main.property.LotteryProperty" />
+        <activity android:name="com.liuheonline.la.ui.main.notice.NoticeActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.login.LoginActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.register.RegisterActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.setting.UserSettingActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.setting.UserSetNickNameActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.setting.UserSetPayPWActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.setting.UserSetPasswordActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.setting.UserSetPhoneActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.AuthActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.login.FindPasswordActivity" />
+        <activity android:name="com.liuheonline.la.ui.forum.AddForumActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.FeedbackActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.InfomationList" />
+        <activity android:name="com.liuheonline.la.ui.user.forummanager.ForumManagerActivity" />
+        <activity android:name="com.liuheonline.la.ui.picture.PicturePagerActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.account.MyAccount" />
+        <activity android:name="com.liuheonline.la.ui.user.account.MyAccountCard" />
+        <activity android:name="com.liuheonline.la.ui.user.account.BindCard" />
+        <activity android:name="com.liuheonline.la.ui.user.account.BindFinish" />
+        <activity android:name="com.liuheonline.la.ui.user.account.AccountInfo" />
+        <activity android:name="com.liuheonline.la.ui.user.account.VerifyMobile" />
+        <!--
+        <activity android:name=".ui.user.account.BankService"
+            />
+        <activity android:name=".ui.user.account.DelCard"
+            />
+        -->
+        <activity android:name="com.liuheonline.la.ui.user.Individuality" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopUpCommit" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopUpCommit2" />
+        <activity android:name="com.liuheonline.la.ui.bet.BetLotteryActivity" />
+        <activity
+            android:name="com.liuheonline.la.ui.bet.BetLottery2Activity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity
+            android:name="com.liuheonline.la.ui.bet.BetLottery3Activity"
+            android:configChanges="orientation|keyboardHidden"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name="com.liuheonline.la.ui.user.agency.AgencyCenter" />
+        <activity android:name="com.liuheonline.la.ui.user.agency.AgencyTeam" />
+        <activity android:name="com.liuheonline.la.ui.user.agency.MemberInfo" />
+        <activity android:name="com.liuheonline.la.ui.widget.ProtectActivity" />
+        <activity
+            android:name="com.liuheonline.la.ui.user.topup.TopUp"
+            android:windowSoftInputMode="adjustUnspecified|stateHidden" />
+        <activity android:name="com.liuheonline.la.ui.user.account.TopupDetail" />
+        <activity android:name="com.liuheonline.la.ui.user.account.TopupInfo" />
+        <activity android:name="com.liuheonline.la.ui.user.account.PdcashInfo" />
+        <activity android:name="com.liuheonline.la.ui.user.account.PdcashDetail" />
+        <activity android:name="com.liuheonline.la.ui.user.agency2.Agency2PriceMember" />
+        <activity android:name="com.liuheonline.la.ui.user.share.ShareActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.account.AccountDetail" />
+        <activity android:name="com.liuheonline.la.ui.user.withdraw.Withdraw" />
+        <activity
+            android:name="com.liuheonline.la.ui.bet.BetLotteryOtherActivity"
+            android:windowSoftInputMode="stateHidden|adjustPan" />
+        <activity android:name="com.liuheonline.la.ui.user.lotterylog.LotteryLogActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.lotterylog.LotteryLogDetailsActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.UserActiveActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.lotterylog.BetLotteryLogDetailsActivity" />
+        <activity android:name="com.liuheonline.la.ui.main.notice.NoticeDtailsActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.account.UnBindCard" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopUpFinish" />
+        <activity android:name="com.liuheonline.la.ui.main.web.ServiceChat" />
+        <activity android:name="com.liuheonline.la.ui.user.VersionActivity" />
+
+        <receiver
+            android:name="com.liuheonline.la.receiver.MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+
+                <category android:name="${applicationId}" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.liuheonline.la.ui.widget.JPushWindow"
+            android:excludeFromRecents="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.liuheonline.la.ui.bet.RulesActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.ShowTopCardActivity" />
+        <activity android:name="com.liuheonline.la.ui.ErrorActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopCardCommitActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopCardFinishActivity" />
+
+        <!-- 图片选择器相关配置 -->
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="${applicationId}"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/filepaths" />
+        </provider>
+
+        <service android:name="com.liuheonline.la.service.GrayService" />
+
+        <activity android:name="com.liuheonline.la.ui.infomation.LowdownActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.TheoryActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.joker.JokerListActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.xuanji.XuanjiListActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.tuku.TukuActivity" />
+        <activity android:name="com.liuheonline.la.ui.infomation.joker.JokerDetailActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.action.ActionCenter" />
+        <activity android:name="com.liuheonline.la.ui.user.action.RedEnvelope" />
+        <activity android:name="com.liuheonline.la.ui.user.action.SignIn" />
+        <activity android:name="com.liuheonline.la.ui.picture.ImageDetailActivity" />
+    </application>
+
+</manifest>

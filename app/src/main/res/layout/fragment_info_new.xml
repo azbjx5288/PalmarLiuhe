@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_information"
+    android:orientation="vertical">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_information_zhangshangliuhe"
+            app:layout_constraintBottom_toTopOf="@id/iv_xuanji"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_click_to_look"
+            android:layout_width="60dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="61dp"
+            android:layout_marginTop="6dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_xuanji"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_information_xuanjijingniang"
+            app:layout_constraintBottom_toTopOf="@id/iv_xiaohua"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv1" />
+
+        <ImageView
+            android:id="@+id/iv_look_xuanji_more"
+            android:layout_width="54dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintRight_toRightOf="@id/iv_xuanji"
+            app:layout_constraintTop_toTopOf="@id/iv_xuanji" />
+
+        <ImageView
+            android:id="@+id/iv_xiaohua"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_information_youmoxiaohua"
+            app:layout_constraintBottom_toTopOf="@id/iv_tuku"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_xuanji" />
+
+        <ImageView
+            android:id="@+id/iv_xiaohua_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:src="@mipmap/iv_information_youmoxiaohua_1"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_xiaohua" />
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="10dp"
+            android:scrollbars="none"
+            android:layout_marginStart="10dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_xiaohua"
+            app:layout_constraintLeft_toLeftOf="@id/iv_xiaohua"
+            app:layout_constraintRight_toRightOf="@id/iv_xiaohua"
+            app:layout_constraintTop_toBottomOf="@id/iv_xiaohua_1">
+
+            <TextView
+                android:id="@+id/tv_xiaohua"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text=""
+                android:textColor="#1F286F"
+                android:textSize="@dimen/sp_14" />
+        </ScrollView>
+
+
+        <ImageView
+            android:id="@+id/iv_look_xiaohua_more"
+            android:layout_width="54dp"
+            android:layout_height="35dp"
+            android:layout_marginEnd="5dp"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintRight_toRightOf="@id/iv_xiaohua"
+            app:layout_constraintTop_toTopOf="@id/iv_xiaohua" />
+
+        <!--app:layout_constraintTop_toBottomOf="@id/iv_xiaohua"-->
+        <ImageView
+            android:id="@+id/iv_tuku"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="12dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_information_tuku"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_xiaohua" />
+
+        <ImageView
+            android:id="@+id/iv_more_tuku"
+            android:layout_width="49dp"
+            android:layout_height="78dp"
+            android:layout_marginEnd="10dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/ic_launcher"
+            app:layout_constraintBottom_toBottomOf="@id/iv_tuku"
+            app:layout_constraintRight_toRightOf="@id/iv_tuku"
+            app:layout_constraintTop_toTopOf="@id/iv_tuku" />
+
+    </android.support.constraint.ConstraintLayout>
+</LinearLayout>

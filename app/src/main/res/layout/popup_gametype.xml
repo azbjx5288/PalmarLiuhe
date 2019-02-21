@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/popup_gametype_container">
+
+        <TextView
+            android:id="@+id/game_type_noe"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:background="#fae3e8"
+            android:gravity="center"
+            android:textColor="#353535"
+            android:textSize="15sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/game_type_noe_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:background="@color/white"
+            android:layout_below="@+id/game_type_noe">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/game_type_two"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/game_type_noe_recycler"
+            android:background="#fae3e8"
+            android:textColor="#353535"
+            android:textSize="15sp"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/game_type_two_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:layout_below="@+id/game_type_two"
+            android:background="@color/white">
+
+        </android.support.v7.widget.RecyclerView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/game_type_two_recycler"
+            android:background="#ff2f1e"/>
+
+    </RelativeLayout>
+
+</RelativeLayout>

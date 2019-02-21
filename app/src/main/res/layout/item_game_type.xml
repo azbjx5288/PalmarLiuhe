@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheckBox
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/type_checkbox"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:layout_marginStart="15dp"
+    android:layout_marginEnd="15dp"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+    android:button="@null"
+    android:background="@drawable/game_type_check"
+    android:textColor="@drawable/game_type_text"
+    android:textSize="15sp"
+    android:text="特码"/>
+
+

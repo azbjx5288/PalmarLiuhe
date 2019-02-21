@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/user_view"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+      <LinearLayout
+          android:id="@+id/line"
+          android:background="@drawable/feedback_select"
+          android:layout_width="match_parent"
+          android:layout_height="200dp">
+          <EditText
+              android:layout_marginTop="10dp"
+              android:id="@+id/feedback_text"
+              android:layout_marginLeft="10dp"
+              android:layout_marginRight="1dp"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:hint="请写下您的意见或建议"
+              android:background="@color/white"
+              android:textColor="@color/feed_edit"
+              android:textSize="17sp"/>
+      </LinearLayout>
+        
+        <Button
+            android:id="@+id/butn"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="提交反馈"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:background="@drawable/feedback_button"/>
+
+    </RelativeLayout>
+</LinearLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="160dp"
+    android:orientation="vertical">
+
+    <RadioGroup
+        android:id="@+id/rg_issue"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="vertical">
+        <RadioButton
+            android:id="@+id/rb_issue30"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:checked="true"
+            android:textColor="@drawable/popu_periods_textcolor"
+            android:gravity="center"
+            android:button="@null"
+            android:text="30"/>
+        <RadioButton
+            android:id="@+id/rb_issue50"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@drawable/popu_periods_textcolor"
+            android:gravity="center"
+            android:button="@null"
+            android:text="50"/>
+        <RadioButton
+            android:id="@+id/rb_issue100"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@drawable/popu_periods_textcolor"
+            android:gravity="center"
+            android:button="@null"
+            android:text="100"/>
+        <RadioButton
+            android:id="@+id/rb_issue200"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:textColor="@drawable/popu_periods_textcolor"
+            android:gravity="center"
+            android:button="@null"
+            android:text="200"/>
+    </RadioGroup>
+
+</LinearLayout>

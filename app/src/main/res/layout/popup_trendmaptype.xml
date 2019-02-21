@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="180dp"
+    android:layout_height="270dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/popup_trendtype_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/type_sx"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="生肖"/>
+
+        <TextView
+            android:id="@+id/type_bs"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="波色"/>
+
+
+        <TextView
+            android:id="@+id/type_wx"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="五行"/>
+
+        <TextView
+            android:id="@+id/type_dx"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="大小"/>
+
+        <TextView
+            android:id="@+id/type_ds"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="单双"/>
+
+        <TextView
+            android:id="@+id/type_ts"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="头数"/>
+
+        <TextView
+            android:id="@+id/type_ws"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="尾数"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

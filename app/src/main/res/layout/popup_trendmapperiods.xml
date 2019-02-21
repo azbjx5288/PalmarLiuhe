@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="180dp"
+    android:layout_height="160dp"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/popup_trendperiods_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/periods01"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="近50期"/>
+
+        <TextView
+            android:id="@+id/periods02"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="近100期"/>
+
+
+        <TextView
+            android:id="@+id/periods03"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="近200期"/>
+
+        <TextView
+            android:id="@+id/periods04"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:textSize="16sp"
+            android:textColor="#141414"
+            android:text="近500期"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

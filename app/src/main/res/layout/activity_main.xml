@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:clipChildren="false"
+    android:layout_height="match_parent"
+    android:background="#00000000">
+    <RelativeLayout
+        android:id="@+id/fragment_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:layout_above="@+id/main_line"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="#e1e1e1"
+            android:id="@+id/main_line"
+            android:layout_above="@+id/menu_rg"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:layout_marginTop="2dp"
+            android:id="@+id/menu_rg"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_main"
+            style="@style/radioMenuStyle"
+            android:checked="true"
+            android:textSize="14sp"
+            android:drawableTop="@drawable/menu_main_selector"
+            android:drawablePadding="3dp"
+            android:text="首页"/>
+
+        <RadioButton
+            android:id="@+id/rb_info"
+            style="@style/radioMenuStyle"
+            android:textSize="14sp"
+            android:drawableTop="@drawable/menu_info_selector"
+            android:drawablePadding="3dp"
+            android:text="资料"/>
+
+            <RadioButton
+                style="@style/radioMenuStyle"
+                android:id="@+id/rb_bet1"
+                android:drawablePadding="3dp"
+                android:textSize="15sp"/>
+        <RadioButton
+            android:id="@+id/rb_forum"
+            style="@style/radioMenuStyle"
+            android:drawableTop="@drawable/menu_forum_selector"
+            android:drawablePadding="3dp"
+            android:textSize="14sp"
+            android:text="交流"/>
+
+        <RadioButton
+            android:id="@+id/rb_user"
+            style="@style/radioMenuStyle"
+            android:drawableTop="@drawable/menu_user_selector"
+            android:drawablePadding="3dp"
+            android:textSize="14sp"
+            android:text="个人中心"/>
+
+        </RadioGroup>
+    <ImageView
+        android:id="@+id/rb_bet0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentBottom="true"
+        android:src="@mipmap/touzhunews1"/>
+
+</RelativeLayout>

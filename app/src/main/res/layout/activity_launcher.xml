@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/img"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:id="@+id/time"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/radis_solid_white2"
+        android:layout_marginEnd="25dp"
+        android:padding="5dp"/>
+
+    <com.bigkoo.convenientbanner.ConvenientBanner
+        android:id="@+id/lead_banner"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <ImageView
+        android:id="@+id/tiyan_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:background="@mipmap/tiyan"
+        android:visibility="gone"/>
+
+
+</RelativeLayout>

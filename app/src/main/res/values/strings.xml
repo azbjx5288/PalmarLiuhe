@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">掌上六合</string>
+    <string name="bindcard"><u>立即绑定</u></string>
+
+    <string name="yaoyiayo">摇一摇\n机选</string>
+
+    <string name="number1">01 02 07 08 12 13 18 19 23\n24 29 30 34 35 40 45 46</string>
+    <string name="number2">03 04 09 10 14 15 20 25 26\n31 36 37 41 42 47 48</string>
+    <string name="number3">05 06 11 16 17 21 22 27 28\n32 33 38 39 43 44 49</string>
+
+    <string name="remaining_times">您还有%1$s次抢红包机会哦</string>
+</resources>
