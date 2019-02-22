@@ -63,11 +63,11 @@ android {
                     def versionName
                     if ("release".equalsIgnoreCase(variant.buildType.name)) {
                         versionName = "release"
-                        fileName = APKName + "_${defaultConfig.versionName}_${versionName}_${releaseTime()}.apk"
+                        fileName = APKName + "_${variant.versionName}_${versionName}_${releaseTime()}.apk"
                         outputFileName = fileName
                     } else if ("debug".equalsIgnoreCase(variant.buildType.name)) {
                         versionName = "debug"
-                        fileName = APKName + "_${defaultConfig.versionName}_${versionName}.apk"
+                        fileName = APKName + "_${variant.versionName}_${versionName}.apk"
                         outputFileName = fileName
                     }
                 }
@@ -78,7 +78,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    buildToolsVersion '27.0.3'
+    buildToolsVersion '28.0.3'
 }
 
 dependencies {
@@ -92,6 +92,7 @@ dependencies {
     implementation project(path: ':library')
     //banner
     implementation 'com.bigkoo:convenientbanner:2.0.5'
+//    implementation 'com.bigkoo:ConvenientBanner:2.1.4'//地址变ConvenientBanner 大写了，额。。。
     implementation 'com.github.bumptech.glide:glide:4.7.1'
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation 'com.android.support:design:27.1.1'
