@@ -23,7 +23,7 @@ public class WebPresenter2 extends BasePresenter<BaseView<String>> {
                 .subscribe(new BaseConsumer<String>() {
                     @Override
                     protected void onSuccees(BaseEntity<String> t) throws Exception {
-                        getView().successed(t.getmData());
+                        getView().successed(t.getmData()+"_"+t.getmCode());
                     }
                     @Override
                     protected void onCodeError(int code, String error) throws Exception {

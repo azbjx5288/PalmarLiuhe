@@ -1,5 +1,7 @@
 package com.liuheonline.la.ui.main.fragment;
 
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.design.widget.TabLayout;
@@ -10,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.liuheonline.la.entity.SpeciesclasstypeEntity;
 import com.liuheonline.la.entity.WebEntity;
@@ -20,6 +23,7 @@ import com.liuheonline.la.mvp.presenter.WebPresenter2;
 import com.liuheonline.la.ui.base.BaseMvpFragment;
 import com.liuheonline.la.ui.main.statistics.ViewPageAdapter;
 import com.liuheonline.la.ui.main.web.X5WebView;
+import com.liuheonline.la.utils.StringUtil;
 import com.mylove.loglib.JLog;
 import com.tencent.smtt.sdk.ValueCallback;
 import com.ysyy.aini.palmarliuhe.R;
@@ -188,9 +192,48 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
                     // 1.投注页面优先加载：/api/Egurl 内容，如果Egurl里data的内容不为空，那么投注页面将直接内嵌data的网址，原来的是读取：app_betting_url显示的
                     if (webEntity!=null) {
                         JLog.d("webEntity  ===="+webEntity);
-                        webView.setVisibility(View.VISIBLE);
-                        betlinear.setVisibility(View.GONE);
-                        webView.loadUrl(webEntity);
+                        String[] webAll=webEntity.split("_");
+
+                        String  url=webAll[0];
+
+                        switch (webAll[1]){
+                            case "201":
+
+                                if(TextUtils.isEmpty(url)){
+                                    Uri CONTENT_URI_BROWSERS = Uri.parse(url);
+
+
+                                    Intent intent = new Intent();
+                                    intent.setAction(Intent.ACTION_VIEW);
+                                    intent.setData(CONTENT_URI_BROWSERS);//Url 就是你要打开的网址x
+                                    // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+                                    // 官方解释 : Name of the component implementing an activity that can display the intent
+                                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                                        final ComponentName componentName = intent.resolveActivity(getContext().getPackageManager());
+                                        // 打印Log   ComponentName到底是什么
+                                        Log.e("ServiceChat", "componentName = " + componentName.getClassName());
+                                        startActivity(Intent.createChooser(intent, "请选择浏览器"));
+                                    } else {
+                                        Toast.makeText(getContext().getApplicationContext(), "没有匹配的程序", Toast.LENGTH_SHORT).show();
+                                    }
+                                }else{
+                                    webView.setVisibility(View.VISIBLE);
+                                    betlinear.setVisibility(View.GONE);
+                                    webView.loadUrl(url);
+                                }
+
+
+
+                                break;
+                            default:
+                                webView.setVisibility(View.VISIBLE);
+                                betlinear.setVisibility(View.GONE);
+                                webView.loadUrl(url);
+                                break;
+
+                        }
+
+
                     } else {
                         waitDialog.closeDialog();
                     }
