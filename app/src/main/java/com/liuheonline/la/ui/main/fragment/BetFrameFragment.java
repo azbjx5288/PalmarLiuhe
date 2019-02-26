@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -15,6 +16,7 @@ import com.liuheonline.la.entity.WebEntity;
 import com.liuheonline.la.event.BetEvent;
 import com.liuheonline.la.mvp.presenter.SpeciesclasstypePresenter;
 import com.liuheonline.la.mvp.presenter.WebPresenter;
+import com.liuheonline.la.mvp.presenter.WebPresenter2;
 import com.liuheonline.la.ui.base.BaseMvpFragment;
 import com.liuheonline.la.ui.main.statistics.ViewPageAdapter;
 import com.liuheonline.la.ui.main.web.X5WebView;
@@ -42,13 +44,15 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
     private List<String> mTitle = new ArrayList<>();
 
     private List<Fragment> mFragment = new ArrayList<>();
-    WebPresenter webPresenter;
+    WebPresenter2 webPresenter;
     SpeciesclasstypePresenter speciesclasstypePresenter;
     @BindId(R.id.bet_webview)
     X5WebView webView;
     @BindId(R.id.bet_linear)
     LinearLayout betlinear;
-    private com.yxt.itv.library.dialog.AlertDialog waitDialog;
+    private com.yxt.itv.library.dialog.DialogLoadding waitDialog;
+
+    private boolean hasCheakced=false;
 
     @Override
     protected void initData() {
@@ -100,7 +104,7 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
             @Override
             public void onPageFinished(com.tencent.smtt.sdk.WebView webView, String s) {
                 super.onPageFinished(webView, s);
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
 
             @Override
@@ -112,19 +116,19 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
             public void onReceivedError(com.tencent.smtt.sdk.WebView webView, int i, String s, String s1) {
                 super.onReceivedError(webView, i, s, s1);
                 // loadfail.setVisibility(View.VISIBLE);
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
 
             @Override
             public void onReceivedHttpError(com.tencent.smtt.sdk.WebView webView, com.tencent.smtt.export.external.interfaces.WebResourceRequest webResourceRequest, com.tencent.smtt.export.external.interfaces.WebResourceResponse webResourceResponse) {
                 super.onReceivedHttpError(webView, webResourceRequest, webResourceResponse);
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
 
             @Override
             public void onReceivedSslError(com.tencent.smtt.sdk.WebView webView, com.tencent.smtt.export.external.interfaces.SslErrorHandler sslErrorHandler, com.tencent.smtt.export.external.interfaces.SslError sslError) {
                 super.onReceivedSslError(webView, sslErrorHandler, sslError);
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
         });
         //webView加载百分比监听
@@ -158,38 +162,83 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
 
     @Override
     protected void initPresenter() {
-        waitDialog = new com.yxt.itv.library.dialog.AlertDialog.Builder(getContext())
-                .setContentView(R.layout.dialog_wait)
+        waitDialog = new com.yxt.itv.library.dialog.DialogLoadding(getContext());
+              /*  .setContentView(R.layout.dialog_wait)
                 .setText(R.id.text_hint, "正在加载……")
-                .create();
+                .create();*/
         speciesclasstypePresenter = new SpeciesclasstypePresenter();
         speciesclasstypePresenter.attachView(this);
-        webPresenter = new WebPresenter();
-        webPresenter.attachView(new BaseView<WebEntity>() {
-            @Override
-            public void onLoading() {
-                waitDialog.show();
-            }
 
-            @Override
-            public void onLoadFailed(int code, String error) {
-
-            }
-
-            @Override
-            public void successed(WebEntity webEntity) {
-                String url = webEntity.getApp_betting_url();
-                if (url.length() > 1) {
-                    webView.setVisibility(View.VISIBLE);
-                    betlinear.setVisibility(View.GONE);
-                    webView.loadUrl(url);
-                } else {
-                    waitDialog.cancel();
+        if(!hasCheakced){
+            hasCheakced=true;
+            webPresenter = new WebPresenter2();
+            webPresenter.attachView(new BaseView<String>() {
+                @Override
+                public void onLoading() {
+                    waitDialog.showDialog();
                 }
-            }
-        });
-        webPresenter.getWeb();
+
+                @Override
+                public void onLoadFailed(int code, String error) {
+                    waitDialog.closeDialog();
+                }
+
+                @Override
+                public void successed(String webEntity) {
+                    // 1.投注页面优先加载：/api/Egurl 内容，如果Egurl里data的内容不为空，那么投注页面将直接内嵌data的网址，原来的是读取：app_betting_url显示的
+                    if (webEntity!=null) {
+                        JLog.d("webEntity  ===="+webEntity);
+                        webView.setVisibility(View.VISIBLE);
+                        betlinear.setVisibility(View.GONE);
+                        webView.loadUrl(webEntity);
+                    } else {
+                        waitDialog.closeDialog();
+                    }
+                }
+            });
+            webPresenter.getEgurl();
+        }
     }
+
+    public void setCheckedBet() {
+
+        if(hasCheakced){
+            webPresenter.getEgurl();
+            return;
+        }
+
+        if(webPresenter==null){
+            webPresenter = new WebPresenter2();
+            webPresenter.attachView(new BaseView<String>() {
+                @Override
+                public void onLoading() {
+                    waitDialog.showDialog();
+                }
+
+                @Override
+                public void onLoadFailed(int code, String error) {
+                    waitDialog.closeDialog();
+                }
+
+                @Override
+                public void successed(String webEntity) {
+                    // 1.投注页面优先加载：/api/Egurl 内容，如果Egurl里data的内容不为空，那么投注页面将直接内嵌data的网址，原来的是读取：app_betting_url显示的
+                    if (webEntity!=null) {
+                        JLog.d("webEntity  ===="+webEntity);
+                        webView.setVisibility(View.VISIBLE);
+                        betlinear.setVisibility(View.GONE);
+                        webView.loadUrl(webEntity);
+                    } else {
+                        waitDialog.closeDialog();
+                    }
+                }
+            });
+            webPresenter.getEgurl();
+        }else{
+            webPresenter.getEgurl();
+        }
+    }
+
 
     @OnClick({R.id.check_linear})
     private void checkShow(View view) {

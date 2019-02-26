@@ -30,6 +30,8 @@ import com.liuheonline.la.ui.main.fragment.ForumFragment;
 import com.liuheonline.la.ui.main.fragment.IndexFragment;
 import com.liuheonline.la.ui.main.fragment.InfoNewFragment;
 import com.liuheonline.la.ui.main.fragment.UserFragment2;
+import com.liuheonline.la.ui.user.agency2.Agency2Price;
+import com.liuheonline.la.ui.user.login.LoginActivity;
 import com.liuheonline.la.ui.widget.popu.NoticePopup;
 import com.liuheonline.la.utils.Dip2pxUtil;
 import com.liuheonline.la.utils.KeyboardControlMnanager;
@@ -250,11 +252,19 @@ public class MainActivity extends BaseMVPActivity<BaseView<List<UpdateEntity>>, 
                 break;
             case R.id.rb_bet0:
             case R.id.rb_bet1:
-                bet0.setImageResource(R.mipmap.touzhunews2);
-                if (betFragment == null) {
-                    betFragment = new BetFrameFragment();
+              int  userId = SharedperfencesUtil.getInt(this, "userId");
+                if (userId != 0) {
+                    bet0.setImageResource(R.mipmap.touzhunews2);
+                    if (betFragment == null) {
+                        betFragment = new BetFrameFragment();
+                    }
+                    switchContent(isShowFragment, betFragment);
+
+                    betFragment.setCheckedBet();
+                } else {
+                    startActivity(LoginActivity.class);
                 }
-                switchContent(isShowFragment, betFragment);
+
                 break;
         }
     }

@@ -1,9 +1,12 @@
 package com.liuheonline.la.ui.main.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.InputType;
@@ -23,9 +26,11 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.liuheonline.la.entity.BankCardEntity;
 import com.liuheonline.la.entity.ImageEntity;
+import com.liuheonline.la.entity.LotteryCategoryEntity;
 import com.liuheonline.la.entity.SignEntity;
 import com.liuheonline.la.entity.UpdateEntity;
 import com.liuheonline.la.entity.UserInfo;
+import com.liuheonline.la.entity.WebEntity;
 import com.liuheonline.la.mvp.presenter.GetCardPresenter;
 import com.liuheonline.la.mvp.presenter.LoginPresenter;
 import com.liuheonline.la.mvp.presenter.PostFilePresenter;
@@ -34,6 +39,7 @@ import com.liuheonline.la.mvp.presenter.SignStatusPresenter;
 import com.liuheonline.la.mvp.presenter.UpUserInfoPresenter;
 import com.liuheonline.la.mvp.presenter.UpdatePresenter;
 import com.liuheonline.la.mvp.presenter.UserInfoPresenter;
+import com.liuheonline.la.mvp.presenter.WebPresenter;
 import com.liuheonline.la.ui.LiuHeApplication;
 import com.liuheonline.la.ui.base.BaseMvpFragment;
 import com.liuheonline.la.ui.forum.holder.GlideImageLoader;
@@ -59,6 +65,7 @@ import com.liuheonline.la.ui.user.withdraw.Withdraw;
 import com.liuheonline.la.ui.widget.CircleImageView;
 import com.liuheonline.la.utils.ImageUrlUtil;
 import com.liuheonline.la.utils.SharedperfencesUtil;
+import com.liuheonline.la.utils.StringUtil;
 import com.liuheonline.la.utils.UpdateMannger;
 import com.mylove.loglib.JLog;
 import com.yancy.gallerypick.config.GalleryConfig;
@@ -513,7 +520,44 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                 startActivity(RegisterActivity.class);
                 break;
             case R.id.message:
-                startActivity(ServiceChat.class);
+//                startActivity(ServiceChat.class);
+
+                WebPresenter   webPresenter= new WebPresenter();
+                webPresenter.attachView(new BaseView<WebEntity>() {
+                    @Override
+                    public void onLoading() {
+                        Log.d("开奖", "获取最新开奖~~");
+                    }
+
+                    @Override
+                    public void onLoadFailed(int code, String error) {
+                        Log.d("开奖", "获取最新开奖失败~~");
+                    }
+
+                    @Override
+                    public void successed(WebEntity webEntity) {
+                       String strurl = StringUtil.translation(webEntity.getService_url());
+
+                        Uri CONTENT_URI_BROWSERS = Uri.parse(strurl);
+
+
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(CONTENT_URI_BROWSERS);//Url 就是你要打开的网址x
+                        // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+                        // 官方解释 : Name of the component implementing an activity that can display the intent
+                        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                            final ComponentName componentName = intent.resolveActivity(getContext().getPackageManager());
+                            // 打印Log   ComponentName到底是什么
+                            Log.e("ServiceChat", "componentName = " + componentName.getClassName());
+                            startActivity(Intent.createChooser(intent, "请选择浏览器"));
+                        } else {
+                            Toast.makeText(getContext().getApplicationContext(), "没有匹配的程序", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                webPresenter.getWeb();
                 break;
             case R.id.setting:
                 if (userId != 0) {

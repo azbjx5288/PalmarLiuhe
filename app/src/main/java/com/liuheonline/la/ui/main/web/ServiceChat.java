@@ -1,7 +1,10 @@
 package com.liuheonline.la.ui.main.web;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -210,7 +213,25 @@ public class ServiceChat extends BaseMVPActivity<BaseView<WebEntity>,WebPresente
     public void successed(WebEntity webEntity) {
         swipeRefreshLayout.setRefreshing(false);
         strurl = StringUtil.translation(webEntity.getService_url());
-        mWebView.loadUrl(StringUtil.translation(strurl));
+//        mWebView.loadUrl(StringUtil.translation(strurl));
+
+        Uri CONTENT_URI_BROWSERS = Uri.parse(strurl);
+
+
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.setData(CONTENT_URI_BROWSERS);//Url 就是你要打开的网址x
+        // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+        // 官方解释 : Name of the component implementing an activity that can display the intent
+        if (intent.resolveActivity(this.getPackageManager()) != null) {
+            final ComponentName componentName = intent.resolveActivity(this.getPackageManager());
+            // 打印Log   ComponentName到底是什么
+            Log.e("ServiceChat", "componentName = " + componentName.getClassName());
+            startActivity(Intent.createChooser(intent, "请选择浏览器"));
+        } else {
+            Toast.makeText(this.getApplicationContext(), "没有匹配的程序", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

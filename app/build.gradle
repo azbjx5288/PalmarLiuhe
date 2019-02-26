@@ -10,8 +10,8 @@ android {
         applicationId "com.liuheonline.la"
         minSdkVersion 19
         targetSdkVersion 27
-        versionCode 52
-        versionName "1.5.2"
+        versionCode 54
+        versionName "1.6.0"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -53,11 +53,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-        def APKName = "PalmarLiuhe"
+      /*  def APKName = "PalmarLiuhe"
         def fileName = ""
         applicationVariants.all { variant ->
 //            variant.getPackageApplication().outputDirectory = new File("/apk/${variant.buildType.name}/${defaultConfig.versionName}")
-            variant.outputs.all { output ->
+           *//* variant.outputs.all { output ->
                 def outputFile = output.outputFile
                 if (outputFile != null && outputFile.name.endsWith('.apk')) {
                     def versionName
@@ -71,14 +71,19 @@ android {
                         outputFileName = fileName
                     }
                 }
+            }*//*
+            variant.outputs.all {
+                outputFileName =APKName + "_${variant.versionCode}-${variant.versionName}-${releaseTime()}.apk"
             }
-        }
+        }*/
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
     buildToolsVersion '28.0.3'
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
 }
 
 dependencies {
@@ -136,4 +141,8 @@ dependencies {
     //    底部弹窗
 //    implementation 'com.github.limxing:Android-PromptDialog:1.1.3'
     implementation 'cn.yc:YCDialogLib:3.6.5'
+}
+
+repositories {
+    mavenCentral()
 }

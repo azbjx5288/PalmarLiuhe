@@ -43,6 +43,10 @@ public interface ITokenServer {
     @POST("/api/com/web")
     Observable<BaseEntity<WebEntity>> getWeb();
 
+
+    @POST("/api/Egurl")
+    Observable<BaseEntity<String>> getEgurl();
+
     //获取邀请人数
 
     /**

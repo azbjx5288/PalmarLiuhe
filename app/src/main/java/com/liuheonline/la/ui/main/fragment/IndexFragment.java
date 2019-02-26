@@ -1,6 +1,7 @@
 package com.liuheonline.la.ui.main.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -20,10 +21,12 @@ import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.liuheonline.la.entity.LotteryEntity;
 import com.liuheonline.la.entity.RedEnvelopeEntity;
+import com.liuheonline.la.entity.WebEntity;
 import com.liuheonline.la.event.IndividualityEvent;
 import com.liuheonline.la.mvp.presenter.LotteryPresenter;
 import com.liuheonline.la.mvp.presenter.LotterySidPresenter;
 import com.liuheonline.la.mvp.presenter.RedEnvelopeAmountPresenter;
+import com.liuheonline.la.mvp.presenter.WebPresenter;
 import com.liuheonline.la.ui.adapter.AutoPollAdapter;
 import com.liuheonline.la.ui.base.BaseMvpFragment;
 import com.liuheonline.la.ui.history.HistoryActivity;
@@ -253,7 +256,44 @@ public class IndexFragment extends BaseMvpFragment<BaseView<LotteryEntity>, Lott
                 break;
 
             case R.id.servicechat:
-                startActivity(ServiceChat.class);
+//                startActivity(ServiceChat.class);
+
+                WebPresenter webPresenter= new WebPresenter();
+                webPresenter.attachView(new BaseView<WebEntity>() {
+                    @Override
+                    public void onLoading() {
+                        Log.d("开奖", "获取最新开奖~~");
+                    }
+
+                    @Override
+                    public void onLoadFailed(int code, String error) {
+                        Log.d("开奖", "获取最新开奖失败~~");
+                    }
+
+                    @Override
+                    public void successed(WebEntity webEntity) {
+                        String strurl = StringUtil.translation(webEntity.getService_url());
+
+                        Uri CONTENT_URI_BROWSERS = Uri.parse(strurl);
+
+
+                        Intent intent = new Intent();
+                        intent.setAction(Intent.ACTION_VIEW);
+                        intent.setData(CONTENT_URI_BROWSERS);//Url 就是你要打开的网址x
+                        // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+                        // 官方解释 : Name of the component implementing an activity that can display the intent
+                        if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                            final ComponentName componentName = intent.resolveActivity(getContext().getPackageManager());
+                            // 打印Log   ComponentName到底是什么
+                            Log.e("ServiceChat", "componentName = " + componentName.getClassName());
+                            startActivity(Intent.createChooser(intent, "请选择浏览器"));
+                        } else {
+                            Toast.makeText(getContext().getApplicationContext(), "没有匹配的程序", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
+                webPresenter.getWeb();
                 break;
             case R.id.drag_but:
                 int userId = SharedperfencesUtil.getInt(mContext, "userId");
@@ -338,7 +378,7 @@ public class IndexFragment extends BaseMvpFragment<BaseView<LotteryEntity>, Lott
                 String url = lotteryEntity.getSlide().get(position).getUrl();
                 Log.w("theurl", url);
                 if (!TextUtils.isEmpty(url)) {
-                    Intent intent = new Intent();
+                   /* Intent intent = new Intent();
                     intent.setAction("android.intent.action.VIEW");
                     Uri content_url = Uri.parse(url);
                     intent.setData(content_url);
@@ -346,6 +386,23 @@ public class IndexFragment extends BaseMvpFragment<BaseView<LotteryEntity>, Lott
                         startActivity(intent);
                     } catch (Exception e) {
                         e.printStackTrace();
+                    }*/
+
+                    Uri CONTENT_URI_BROWSERS = Uri.parse(url);
+
+
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_VIEW);
+                    intent.setData(CONTENT_URI_BROWSERS);//Url 就是你要打开的网址x
+                    // 注意此处的判断intent.resolveActivity()可以返回显示该Intent的Activity对应的组件名
+                    // 官方解释 : Name of the component implementing an activity that can display the intent
+                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
+                        final ComponentName componentName = intent.resolveActivity(getContext().getPackageManager());
+                        // 打印Log   ComponentName到底是什么
+                        Log.e("ServiceChat", "componentName = " + componentName.getClassName());
+                        startActivity(Intent.createChooser(intent, "请选择浏览器"));
+                    } else {
+                        Toast.makeText(getContext().getApplicationContext(), "没有匹配的程序", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
