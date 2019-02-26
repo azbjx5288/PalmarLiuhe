@@ -33,6 +33,7 @@ import com.liuheonline.la.utils.SharedperfencesUtil;
 import com.mylove.loglib.JLog;
 import com.ysyy.aini.palmarliuhe.R;
 import com.yxt.itv.library.base.BaseView;
+import com.yxt.itv.library.dialog.AlertDialog;
 import com.yxt.itv.library.ioc.BindId;
 import com.yxt.itv.library.ioc.OnClick;
 import com.yxt.itv.library.navigationbar.DefaultNavigationBar;
@@ -59,6 +60,7 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
     int ischecked = 1;
     PayMentEntity payMentEntity;
     BankCard1Presenter bankCard1Presenter;
+    private AlertDialog waitDialog;
 
     @Override
     protected void initPresenter() {
@@ -138,7 +140,7 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
             Toast.makeText(getApplicationContext(), "充值金额不能为整数", Toast.LENGTH_SHORT).show();
             return;
         }
-        if (type.equals("sanfang")) {
+       if (type.equals("sanfang")) {
             if (payMentEntity.getName().equals("支付宝")) {
                 bankCard1Presenter.getBankCard("alipay", editprice.getText().toString());
             } else if (payMentEntity.getName().equals("微信支付")) {
@@ -150,17 +152,17 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
             payMentEntity.setPrice(Double.parseDouble(editprice.getText().toString()));
             bundle.putSerializable("payMentEntity", payMentEntity);
             JLog.i(payMentEntity.getCode());
-            if (payMentEntity.getCode().equals("offline")) {
+           if (payMentEntity.getCode().equals("offline")) {
                 JLog.v();
                 if (payMentEntity.getConfig() != null) {
-                    startActivity(ShowTopCardActivity.class, bundle);
-                }
+                    startActivity(TopCardCommitActivity2.class, bundle);
+               }
             } else {
                 JLog.v();
                 if (payMentEntity.getQrcode() != null) {
                     startActivity(TopUpCommit2.class, bundle);
                 }
-            }
+           }
 
         }
     }
@@ -241,23 +243,29 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
         recyclerView.setHasFixedSize(true);
         type = getIntent().getExtras().getString("type");
 
+        waitDialog = new AlertDialog.Builder(this)
+                .setContentView(R.layout.dialog_wait)
+                .setText(R.id.text_hint,"提交中……")
+                .create();
+
     }
 
     @Override
     public void onLoading() {
-
+        waitDialog.show();
     }
 
     @Override
     public void successed(List<PayMentEntity> payMentEntities) {
         for (int i = 0; i < payMentEntities.size(); i++) {
-            if (payMentEntities.get(i).getCode().equals("offline")) {
+          /*  if (payMentEntities.get(i).getCode().equals("offline")) {
                 payMentEntities.remove(i);
-            }
+            }*/
         }
         payMentEntities.get(0).setSelected(true);
         list = payMentEntities;
         baseQuickAdapter.setNewData(payMentEntities);
+        waitDialog.cancel();
     }
 
     @Override

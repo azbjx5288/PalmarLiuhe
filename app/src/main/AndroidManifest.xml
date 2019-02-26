@@ -183,6 +183,7 @@
         <activity android:name="com.liuheonline.la.ui.user.topup.ShowTopCardActivity" />
         <activity android:name="com.liuheonline.la.ui.ErrorActivity" />
         <activity android:name="com.liuheonline.la.ui.user.topup.TopCardCommitActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.topup.TopCardCommitActivity2" />
         <activity android:name="com.liuheonline.la.ui.user.topup.TopCardFinishActivity" />
 
         <!-- 图片选择器相关配置 -->
