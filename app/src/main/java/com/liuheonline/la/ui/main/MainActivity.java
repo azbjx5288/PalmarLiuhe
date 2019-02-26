@@ -249,6 +249,8 @@ public class MainActivity extends BaseMVPActivity<BaseView<List<UpdateEntity>>, 
                     userFragment = new UserFragment2();
                 }
                 switchContent(isShowFragment, userFragment);
+
+                userFragment.checkUser();
                 break;
             case R.id.rb_bet0:
             case R.id.rb_bet1:

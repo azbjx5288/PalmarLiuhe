@@ -167,8 +167,15 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     PostFilePresenter postFilePresenter;
     UpUserInfoPresenter upUserInfoPresenter;
 
+    private boolean hasCheakced=false;
+
     @Override
     protected void initPresenter() {
+        if(hasCheakced) {
+            return;
+        }else{
+            hasCheakced = true;
+        }
         presenter = new UserInfoPresenter();
         getCardPresenter = new GetCardPresenter();
         getCardPresenter.attachView(new BaseView<List<BankCardEntity>>() {
@@ -707,6 +714,12 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     public void onResume() {
         super.onResume();
         setUI();
+
+        setUI();
+
+        setUI() ;
+        setUI() ;
+        setUI() ;
     }
 
     private void setUI() {
@@ -847,5 +860,17 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
             updateMannger.cancelDown();
         }
         super.onDestroy();
+    }
+
+    public void checkUser() {
+        if(hasCheakced){
+            setUI() ;
+
+            setUI() ;
+            setUI() ;
+            setUI() ;
+            setUI() ;
+        }
+
     }
 }
