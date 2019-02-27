@@ -62,6 +62,8 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
     BankCard1Presenter bankCard1Presenter;
     private AlertDialog waitDialog;
 
+    private String TOPUP_SECLETED="TopUpSecleted";
+
     @Override
     protected void initPresenter() {
         presenter = new PayMentPresenter();
@@ -140,6 +142,10 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
             Toast.makeText(getApplicationContext(), "充值金额不能为整数", Toast.LENGTH_SHORT).show();
             return;
         }
+        if(payMentEntity==null){
+            Toast.makeText(getApplicationContext(), "请选择支付方式", Toast.LENGTH_SHORT).show();
+            return;
+        }
        if (type.equals("sanfang")) {
             if (payMentEntity.getName().equals("支付宝")) {
                 bankCard1Presenter.getBankCard("alipay", editprice.getText().toString());
@@ -176,10 +182,17 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
             protected void convert(BaseViewHolder helper, PayMentEntity item) {
                 helper.setText(R.id.payent_name, item.getName());
                 CheckBox checkBox = helper.getView(R.id.payent_checkbox);
-                checkBox.setChecked(item.isSelected());
+                int selectId=SharedperfencesUtil.getInt(TopUp.this,TOPUP_SECLETED);
+                if (item.getId()==selectId) {
+                    checkBox.setChecked(true);
+                    payMentEntity = item;
+                }else{
+                    checkBox.setChecked(false);
+                }
+               /* checkBox.setChecked(item.isSelected());
                 if (item.isSelected()) {
                     payMentEntity = item;
-                }
+                }*/
 
                 //加载图片
                 Glide.with(TopUp.this)
@@ -200,21 +213,26 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
                             list.get(i).setSelected(false);
                         }
                         list.get(helper.getAdapterPosition()).setSelected(true);
+                        SharedperfencesUtil.setInt(TopUp.this,TOPUP_SECLETED, item.getId());
                         baseQuickAdapter.notifyDataSetChanged();
                     }
                 });
                 checkBox.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        if (checkBox.isChecked()) {
-                            for (int i = 0; i < list.size(); i++) {
-                                list.get(i).setSelected(false);
-                            }
-                            list.get(helper.getAdapterPosition()).setSelected(true);
-                            baseQuickAdapter.notifyDataSetChanged();
-                        } else {
-                            checkBox.setChecked(true);
+                        for (int i = 0; i < list.size(); i++) {
+                            list.get(i).setSelected(false);
                         }
+                        if (checkBox.isChecked()) {
+
+//                            list.get(helper.getAdapterPosition()).setSelected(true);
+                            SharedperfencesUtil.setInt(TopUp.this,TOPUP_SECLETED, item.getId());
+                        } else {
+                            SharedperfencesUtil.setInt(TopUp.this,TOPUP_SECLETED, 0);
+                            payMentEntity = null;
+//                            checkBox.setChecked(true);
+                        }
+                        baseQuickAdapter.notifyDataSetChanged();
                     }
                 });
 
@@ -262,8 +280,13 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
           /*  if (payMentEntities.get(i).getCode().equals("offline")) {
                 payMentEntities.remove(i);
             }*/
+          /*  int selectId=SharedperfencesUtil.getInt(TopUp.this,TOPUP_SECLETED);
+            if (payMentEntities.get(i).getId()==selectId) {
+                payMentEntities.get(i).setSelected(true);
+            }*/
         }
-        payMentEntities.get(0).setSelected(true);
+//        payMentEntities.get(0).setSelected(true);
+
         list = payMentEntities;
         baseQuickAdapter.setNewData(payMentEntities);
         waitDialog.cancel();

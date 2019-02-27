@@ -40,3 +40,10 @@
 10. 常用工具类的封装
 11. 数据库操作GreenDao的使用
 12. 极光推送
+
+
+
+####  主要接口：
+1.账户充值：api.6he.la:1688/api/memberpayment?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
+2.活动中心：api.6he.la:1688/api/Activify?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
+
