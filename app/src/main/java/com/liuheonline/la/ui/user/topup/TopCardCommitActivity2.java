@@ -119,7 +119,7 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
         //初始化dialog
         rechargeDialog = new AlertDialog.Builder(this)
                 .setContentView(R.layout.dialog_recharge)
-                .setWidthAndHeight(Dip2pxUtil.dip2px(this,300f),Dip2pxUtil.dip2px(TopCardCommitActivity2.this,150f))
+//                .setWidthAndHeight(Dip2pxUtil.dip2px(this,300f),Dip2pxUtil.dip2px(TopCardCommitActivity2.this,150f))
                 .create();
     }
 

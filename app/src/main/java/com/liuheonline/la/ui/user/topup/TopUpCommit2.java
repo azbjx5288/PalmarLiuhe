@@ -96,6 +96,8 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
      */
     private PaysCreatePresenter paysCreatePresenter;
 
+    private AlertDialog waitDialog;
+
     @Override
     protected void initPresenter() {
         presenter = new GetRechargeSNPresenter();
@@ -251,7 +253,7 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
                 } else {
                     Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                 }
-
+                waitDialog.cancel();
             }
 
             @Override
@@ -340,6 +342,7 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
                 orderid = paysEntity.getOrder().getOut_order_id();
                 JLog.d("paysPresenter.successed");
                 dell(paysEntity);
+                waitDialog.cancel();
             }
         });
     }
@@ -489,11 +492,17 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
         saveimg.setOnClickListener(v -> {
             saveImgMenuPopup.showPopupWindow();
         });
+
+        waitDialog = new AlertDialog.Builder(this)
+                .setContentView(R.layout.dialog_wait2)
+                .setText(R.id.text_hint,"加载中……")
+                .create();
+        waitDialog.show();
     }
 
     @Override
     public void onLoading() {
-
+        waitDialog.show();
     }
 
     @Override
@@ -502,6 +511,11 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
         if (countDownTimer != null) {
             countDownTimer.cancel();
         }
+    }
+
+    @Override
+    public void onLoadFailed(int code, String error) {
+        super.onLoadFailed(code, error);
     }
 
     @Override
