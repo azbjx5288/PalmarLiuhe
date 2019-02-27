@@ -5,7 +5,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -18,6 +17,7 @@ import com.liuheonline.la.mvp.presenter.RechargePresenter;
 import com.liuheonline.la.ui.LiuHeApplication;
 import com.liuheonline.la.ui.base.BaseMVPActivity;
 import com.liuheonline.la.ui.widget.CustomDatePicker2;
+import com.liuheonline.la.utils.Dip2pxUtil;
 import com.ysyy.aini.palmarliuhe.R;
 import com.yxt.itv.library.base.BaseView;
 import com.yxt.itv.library.dialog.AlertDialog;
@@ -75,6 +75,9 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
 
     GetRechargeSNPresenter getRechargeSNPresenter;
 
+    //确认转账弹窗
+    private AlertDialog rechargeDialog;
+
     @Override
     protected void initData() {
         Bundle bundle = getIntent().getExtras();
@@ -87,7 +90,7 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
             userNameText.setText(payMentEntity.getConfig().getBank_account_name());
             cardNameText.setText(payMentEntity.getConfig().getBank_id());
             cardAddText.setText(payMentEntity.getConfig().getBank_name());
-            moneyText.setText(payMentEntity.getPrice()+"");
+            moneyText.setText(bundle.getString("money"));
         }
     }
 
@@ -112,6 +115,12 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
                 .create();
 
         initDatePicker();
+
+        //初始化dialog
+        rechargeDialog = new AlertDialog.Builder(this)
+                .setContentView(R.layout.dialog_recharge)
+                .setWidthAndHeight(Dip2pxUtil.dip2px(this,300f),Dip2pxUtil.dip2px(TopCardCommitActivity2.this,150f))
+                .create();
     }
 
     private void initDatePicker() {
@@ -130,66 +139,76 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
     private void submit(View view){
         switch (view.getId()){
             case R.id.submit_btn:
-                String cardNum = cardNumText.getText().toString().trim();
-                String userName = userNameText.getText().toString().trim();
-                String cardName = cardNameText.getText().toString().trim();
+
+                rechargeDialog.setOnclickListener(R.id.cancel,v1 -> rechargeDialog.dismiss());
+                rechargeDialog.setOnclickListener(R.id.sure,v1 -> {
+
+
+                    String cardNum = cardNumText.getText().toString().trim();
+                    String userName = userNameText.getText().toString().trim();
+                    String cardName = cardNameText.getText().toString().trim();
 //                String snNumber = order_num.getText().toString().trim();
-                String topTime = topTimeText.getText().toString().trim();
+                    String topTime = topTimeText.getText().toString().trim();
 
-                String money=moneyText.getText().toString().trim();
-                String name=sn_name.getText().toString().trim();
+                    String money=moneyText.getText().toString().trim();
+                    String name=sn_name.getText().toString().trim();
 
 
-                if(money.equals("")){
-                    Toast.makeText(LiuHeApplication.context,"请输入金额",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    if(money.equals("")){
+                        Toast.makeText(LiuHeApplication.context,"请输入金额",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                if(cardNum.equals("")){
-                    Toast.makeText(LiuHeApplication.context,"请输入卡号",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    if(cardNum.equals("")){
+                        Toast.makeText(LiuHeApplication.context,"请输入卡号",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                if(userName.equals("")){
-                    Toast.makeText(LiuHeApplication.context,"请输入姓名",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    if(userName.equals("")){
+                        Toast.makeText(LiuHeApplication.context,"请输入姓名",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
-                if(cardName.equals("")){
-                    Toast.makeText(LiuHeApplication.context,"请输入付款银行名称",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(name.equals("")){
-                    Toast.makeText(LiuHeApplication.context,"请输入存款人姓名",Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                    if(cardName.equals("")){
+                        Toast.makeText(LiuHeApplication.context,"请输入付款银行名称",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    if(name.equals("")){
+                        Toast.makeText(LiuHeApplication.context,"请输入存款人姓名",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
               /*  if(snNumber.equals("")){
                     Toast.makeText(LiuHeApplication.context,"请输入单号",Toast.LENGTH_SHORT).show();
                     return;
                 }*/
 
-                if(topTime.equals("") || topTime.equals("点击选择转账时间")){
-                    Toast.makeText(LiuHeApplication.context,"请选择转账时间",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
-                long time = 0;
-                try {
-                    time = sdf.parse(topTime).getTime();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                Map<String,Object> map = new HashMap<>();
-                map.put("pdr_amount",money);
-                map.put("payment_code",payMentEntity.getCode());
+                    if(topTime.equals("") || topTime.equals("点击选择转账时间")){
+                        Toast.makeText(LiuHeApplication.context,"请选择转账时间",Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+                    long time = 0;
+                    try {
+                        time = sdf.parse(topTime).getTime();
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("pdr_amount",money);
+                    map.put("payment_code",payMentEntity.getCode());
 //                map.put("pdr_trade_sn",snNumber);
-                map.put("pdr_bank_account_name",userName);
-                map.put("pdr_bank_account_number",cardNum);
-                map.put("pdr_bank_id",cardName);
-                map.put("pdr_payment_time",time);
-                map.put("name",name);
-                presenter.recharge(map);
+                    map.put("pdr_bank_account_name",userName);
+                    map.put("pdr_bank_account_number",cardNum);
+                    map.put("pdr_bank_id",cardName);
+                    map.put("pdr_payment_time",time);
+                    map.put("name",name);
+                    Log.w("map", map.toString());
+                    presenter.recharge(map);
+
+                });
+                rechargeDialog.show();
+
                 break;
             case R.id.top_time:
                 customDatePicker.show();
@@ -290,12 +309,14 @@ public class TopCardCommitActivity2 extends BaseMVPActivity<BaseView<RechargeEnt
     public void onLoadFailed(int code, String error) {
         super.onLoadFailed(code, error);
         waitDialog.cancel();
+        rechargeDialog.dismiss();
         Toast.makeText(LiuHeApplication.context,error,Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void successed(RechargeEntity rechargeEntity) {
         waitDialog.cancel();
+        rechargeDialog.dismiss();
         startActivity(TopCardFinishActivity.class);
         finish();
     }

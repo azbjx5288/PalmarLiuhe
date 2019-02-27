@@ -151,6 +151,7 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
             Bundle bundle = new Bundle();
             payMentEntity.setPrice(Double.parseDouble(editprice.getText().toString()));
             bundle.putSerializable("payMentEntity", payMentEntity);
+            bundle.putString("money",editprice.getText().toString());
             JLog.i(payMentEntity.getCode());
            if (payMentEntity.getCode().equals("offline")) {
                 JLog.v();
