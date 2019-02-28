@@ -166,9 +166,9 @@ public class TopUp extends BaseMVPActivity<BaseView<List<PayMentEntity>>, PayMen
                }
             } else {
                 JLog.v();
-                if (payMentEntity.getQrcode() != null) {
+               /* if (payMentEntity.getQrcode() != null) {*/
                     startActivity(TopUpCommit2.class, bundle);
-                }
+               /* }*/
            }
 
         }
