@@ -96,7 +96,7 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
      */
     private PaysCreatePresenter paysCreatePresenter;
 
-    private AlertDialog waitDialog;
+    private com.yxt.itv.library.dialog.DialogLoadding waitDialog;
 
     @Override
     protected void initPresenter() {
@@ -253,7 +253,7 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
                 } else {
                     Toast.makeText(getApplicationContext(), error, Toast.LENGTH_SHORT).show();
                 }
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
 
             @Override
@@ -342,7 +342,7 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
                 orderid = paysEntity.getOrder().getOut_order_id();
                 JLog.d("paysPresenter.successed");
                 dell(paysEntity);
-                waitDialog.cancel();
+                waitDialog.closeDialog();
             }
         });
     }
@@ -493,16 +493,13 @@ public class TopUpCommit2 extends BaseMVPActivity<BaseView<RechargeSNEntity>, Ge
             saveImgMenuPopup.showPopupWindow();
         });
 
-        waitDialog = new AlertDialog.Builder(this)
-                .setContentView(R.layout.dialog_wait2)
-                .setText(R.id.text_hint,"加载中……")
-                .create();
-        waitDialog.show();
+        waitDialog = new com.yxt.itv.library.dialog.DialogLoadding(this);
+        waitDialog.showDialog();
     }
 
     @Override
     public void onLoading() {
-        waitDialog.show();
+        waitDialog.showDialog();
     }
 
     @Override
