@@ -154,6 +154,7 @@
         <activity android:name="com.liuheonline.la.ui.user.lotterylog.LotteryLogActivity" />
         <activity android:name="com.liuheonline.la.ui.user.lotterylog.LotteryLogDetailsActivity" />
         <activity android:name="com.liuheonline.la.ui.user.UserActiveActivity" />
+        <activity android:name="com.liuheonline.la.ui.user.UserActiveActivity2" />
         <activity android:name="com.liuheonline.la.ui.user.lotterylog.BetLotteryLogDetailsActivity" />
         <activity android:name="com.liuheonline.la.ui.main.notice.NoticeDtailsActivity" />
         <activity android:name="com.liuheonline.la.ui.user.account.UnBindCard" />

@@ -3,9 +3,11 @@ package com.liuheonline.la.network.api;
 
 import com.liuheonline.la.entity.InviteNumEntity;
 import com.liuheonline.la.entity.TokenEntity;
+import com.liuheonline.la.entity.UserActivityEntity;
 import com.liuheonline.la.entity.WebEntity;
 import com.yxt.itv.library.http.retrofit.BaseEntity;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Observable;
@@ -54,5 +56,13 @@ public interface ITokenServer {
      */
     @POST("/api/member/invite_num")
     Observable<BaseEntity<InviteNumEntity>> getInviteNum();
+
+    /**
+     * @param
+     * @return 2.拿到数据之后按照ID降序并排显示图片img
+     * @description 2.拿到数据之后按照ID降序并排显示图片img
+     */
+    @POST("/api/Activify")
+    Observable<BaseEntity<List<UserActivityEntity>>> getUserActivity();
 }
 

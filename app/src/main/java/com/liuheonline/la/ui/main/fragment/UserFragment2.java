@@ -47,6 +47,7 @@ import com.liuheonline.la.ui.main.web.ServiceChat;
 import com.liuheonline.la.ui.user.FeedbackActivity;
 import com.liuheonline.la.ui.user.Individuality;
 import com.liuheonline.la.ui.user.UserActiveActivity;
+import com.liuheonline.la.ui.user.UserActiveActivity2;
 import com.liuheonline.la.ui.user.VersionActivity;
 import com.liuheonline.la.ui.user.account.AccountInfo;
 import com.liuheonline.la.ui.user.account.MyAccountCard;
@@ -647,7 +648,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                 break;
             case R.id.active_linear://活动中心
                 if (userId != 0) {
-                    startActivity(UserActiveActivity.class);
+                    startActivity(UserActiveActivity2.class);
 //                    startActivity(ActionCenter.class);
                 } else {
                     startActivity(LoginActivity.class);
