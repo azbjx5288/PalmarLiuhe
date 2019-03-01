@@ -192,6 +192,7 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
                 @Override
                 public void successed(String webEntity) {
                     showContent(webEntity);
+                    waitDialog.closeDialog();
                 }
             });
             webPresenter.getEgurl();

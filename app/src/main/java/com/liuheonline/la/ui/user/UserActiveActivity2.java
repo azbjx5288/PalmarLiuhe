@@ -7,10 +7,13 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -92,9 +95,12 @@ public class UserActiveActivity2 extends BaseMVPActivity<BaseView<List<UserActiv
                 helper.itemView.setOnClickListener(v -> {
 
                     redEnvelopeDialog.show();
-                    redEnvelopeDialog.setText(R.id.edit_01, item.getAddtime() + "");
+//                    redEnvelopeDialog.setText(R.id.edit_01, item.getAddtime() + "");
+                    redEnvelopeDialog.setText(R.id.edit_01, "即日起");
                     redEnvelopeDialog.setText(R.id.edit_02, item.getPeople() + "");
-                    redEnvelopeDialog.setText(R.id.edit_03, item.getContent() + "");
+                    redEnvelopeDialog.setText(R.id.edit_03, item.getContent() + item.getContent() + "");
+                    TextView edit_03tv = redEnvelopeDialog.getView(R.id.edit_03);
+                    edit_03tv.setMovementMethod(ScrollingMovementMethod.getInstance());
                     redEnvelopeDialog.setOnclickListener(R.id.cancel, new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -141,7 +147,7 @@ public class UserActiveActivity2 extends BaseMVPActivity<BaseView<List<UserActiv
         redEnvelopeDialog = new AlertDialog.Builder(UserActiveActivity2.this)
                 .setContentView(R.layout.dialog_activityuser)
                 .setCancelable(false)
-                .setWidthAndHeight(ViewGroup.LayoutParams.MATCH_PARENT, Dip2pxUtil.dip2px(UserActiveActivity2.this, 600f))
+                .setWidthAndHeight(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT)
                 .create();
 
         swipeRefreshLayout.setOnRefreshListener(this);

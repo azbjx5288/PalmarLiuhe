@@ -47,7 +47,7 @@
                         android:layout_marginEnd="10dp"
                         android:textColor="#737171"
                         android:textSize="14sp"
-                        android:hint="输入活动时间"/>
+                        android:hint="即日起"/>
 
                 </LinearLayout>
 
@@ -99,13 +99,11 @@
                         android:layout_width="0dp"
                         android:layout_weight="1"
                         android:layout_height="120dp"
-                        android:gravity="center_vertical"
                         android:background="@drawable/bet_edit_bg"
-                        android:inputType="textMultiLine"
-                        android:minLines="3"
                         android:layout_marginStart="10dp"
                         android:layout_marginEnd="10dp"
                         android:textColor="#737171"
+                        android:scrollbars="vertical"
                         android:textSize="14sp"
                         android:hint="输入活动内容"/>
 
