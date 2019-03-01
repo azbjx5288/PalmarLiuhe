@@ -720,8 +720,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     @Override
     public void onResume() {
         super.onResume();
-        setUI();
-
+        setUI() ;
     }
 
     private void setUI() {
@@ -758,26 +757,6 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
             managerLinear.setVisibility(View.VISIBLE);
         }
 
-        mUserInfoPresenter=new UserInfoPresenter();
-        mUserInfoPresenter.attachView(new BaseView<UserInfo>() {
-            @Override
-            public void onLoading() {
-                waitDialog.showDialog();
-            }
-
-            @Override
-            public void onLoadFailed(int code, String error) {
-                waitDialog.closeDialog();
-            }
-
-            @Override
-            public void successed(UserInfo userInfo) {
-                userRefreshView.setRefreshing(false);
-                money.setText(userInfo.getAvailable_predeposit());
-                waitDialog.closeDialog();
-            }
-        });
-        mUserInfoPresenter.getUserInfo(userId);
     }
 
     @Override
@@ -807,8 +786,6 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
 
     @Override
     protected void fetchData() {
-        setUI();
-        setUI();
         setUI();
     }
 
@@ -867,6 +844,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                 .into(userIconImg);
         waitDialog.closeDialog();
+        loadUserMore();
     }
 
     public String getVersionName(Context context) {
@@ -892,9 +870,32 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     public void checkUser() {
         if(hasCheakced){
             setUI() ;
-            setUI() ;
         }
 
+    }
+
+    private void  loadUserMore(){
+        userId = SharedperfencesUtil.getInt(getContext(), "userId");
+
+        UserInfoPresenter  mUserInfoPresenter2=new UserInfoPresenter();
+        mUserInfoPresenter2.attachView(new BaseView<UserInfo>() {
+            @Override
+            public void onLoading() {
+                waitDialog.showDialog();
+            }
+
+            @Override
+            public void onLoadFailed(int code, String error) {
+                waitDialog.closeDialog();
+            }
+
+            @Override
+            public void successed(UserInfo userInfo) {
+                money.setText(userInfo.getAvailable_predeposit());
+                waitDialog.closeDialog();
+            }
+        });
+        mUserInfoPresenter2.getUserInfo(userId);
     }
 
 }
