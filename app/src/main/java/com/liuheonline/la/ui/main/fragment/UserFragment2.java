@@ -156,7 +156,8 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     //图片选择器回调
     private IHandlerCallBack iHandlerCallBack;
 
-    private AlertDialog waitDialog;
+//    private AlertDialog waitDialog;
+    private com.yxt.itv.library.dialog.DialogLoadding waitDialog;
 
     private String userImgPath = "";
 
@@ -182,12 +183,12 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         getCardPresenter.attachView(new BaseView<List<BankCardEntity>>() {
             @Override
             public void onLoading() {
-
+                waitDialog.showDialog();
             }
 
             @Override
             public void onLoadFailed(int code, String error) {
-
+                waitDialog.closeDialog();
             }
 
             @Override
@@ -199,6 +200,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                     Log.w("thehasCard", SharedperfencesUtil.getBoolean(getContext(), "hasCard") + " userfragment 91");
                     SharedperfencesUtil.setBoolean(getContext(), "hasCard", false);
                 }
+                waitDialog.closeDialog();
             }
         });
         getCardPresenter.getCardUserLoad(1, 1);
@@ -323,11 +325,12 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         postFilePresenter.attachView(new BaseView<List<ImageEntity>>() {
             @Override
             public void onLoading() {
+
             }
 
             @Override
             public void onLoadFailed(int code, String error) {
-                waitDialog.cancel();
+                waitDialog.closeDialog();
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             }
 
@@ -347,13 +350,13 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
 
             @Override
             public void onLoadFailed(int code, String error) {
-                waitDialog.cancel();
+                waitDialog.closeDialog();
                 Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void successed(Object s) {
-                waitDialog.cancel();
+                waitDialog.closeDialog();
                 //显示图片
                 Glide.with(getActivity())
                         .load(ImageUrlUtil.getImgUrl(userImgPath, 100, 100))
@@ -393,7 +396,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
 
             @Override
             public void onSuccess(List<String> photoList) {
-                waitDialog.show();
+                waitDialog.showDialog();
                 Flowable.just(photoList)
                         .observeOn(Schedulers.io())
                         .map(list -> {
@@ -408,7 +411,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                                 //上传图片
                                 postFilePresenter.postFile("", imgFile);
                             } else {
-                                waitDialog.cancel();
+                                waitDialog.closeDialog();
                             }
                         });
             }
@@ -442,10 +445,11 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         wiatDialog = new AlertDialog.Builder(getContext())
                 .setContentView(R.layout.dialog_wait)
                 .create();
-        waitDialog = new AlertDialog.Builder(getContext())
+       /* waitDialog = new AlertDialog.Builder(getContext())
                 .setContentView(R.layout.dialog_wait)
                 .setText(R.id.text_hint, "提交中……")
-                .create();
+                .create();*/
+        waitDialog = new com.yxt.itv.library.dialog.DialogLoadding(getContext());
     }
 
     @Override
@@ -807,13 +811,14 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
 
     @Override
     public void onLoading() {
-
+        waitDialog.showDialog();
     }
 
     @Override
     public void onLoadFailed(int code, String error) {
         super.onLoadFailed(code, error);
         userRefreshView.setRefreshing(false);
+        waitDialog.closeDialog();
     }
 
     @Override
@@ -841,6 +846,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                         .priority(Priority.HIGH) //优先级
                         .diskCacheStrategy(DiskCacheStrategy.RESOURCE))
                 .into(userIconImg);
+        waitDialog.closeDialog();
     }
 
     public String getVersionName(Context context) {
