@@ -183,8 +183,8 @@ public class MyAccountCard extends BaseMVPActivity<BaseView<List<BankCardEntity>
         if(p == 1){
             if(bankCardEntities != null && bankCardEntities.size() > 0){
                 baseQuickAdapter.setNewData(bankCardEntities);
-                defaultNavigationBar.setRightIconVisibility(true);
-                defaultNavigationBar.setRightText("解除绑定");
+            /*    defaultNavigationBar.setRightIconVisibility(true);
+                defaultNavigationBar.setRightText("解除绑定");*/
                 hasdata.setVisibility(View.VISIBLE);
                 nodata.setVisibility(View.GONE);
                 if(bankCardEntities.size()  < 10){
