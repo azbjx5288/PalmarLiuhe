@@ -169,6 +169,8 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     PostFilePresenter postFilePresenter;
     UpUserInfoPresenter upUserInfoPresenter;
 
+    UserInfoPresenter  mUserInfoPresenter;
+
     private boolean hasCheakced=false;
 
     @Override
@@ -720,11 +722,6 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         super.onResume();
         setUI();
 
-        setUI();
-
-        setUI() ;
-        setUI() ;
-        setUI() ;
     }
 
     private void setUI() {
@@ -760,6 +757,27 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
             daililinear.setVisibility(View.VISIBLE);
             managerLinear.setVisibility(View.VISIBLE);
         }
+
+        mUserInfoPresenter=new UserInfoPresenter();
+        mUserInfoPresenter.attachView(new BaseView<UserInfo>() {
+            @Override
+            public void onLoading() {
+                waitDialog.showDialog();
+            }
+
+            @Override
+            public void onLoadFailed(int code, String error) {
+                waitDialog.closeDialog();
+            }
+
+            @Override
+            public void successed(UserInfo userInfo) {
+                userRefreshView.setRefreshing(false);
+                money.setText(userInfo.getAvailable_predeposit());
+                waitDialog.closeDialog();
+            }
+        });
+        mUserInfoPresenter.getUserInfo(userId);
     }
 
     @Override
@@ -789,7 +807,9 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
 
     @Override
     protected void fetchData() {
-
+        setUI();
+        setUI();
+        setUI();
     }
 
     @Override
@@ -872,12 +892,9 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
     public void checkUser() {
         if(hasCheakced){
             setUI() ;
-
-            setUI() ;
-            setUI() ;
-            setUI() ;
             setUI() ;
         }
 
     }
+
 }
