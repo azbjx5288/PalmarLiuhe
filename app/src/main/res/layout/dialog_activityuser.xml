@@ -6,127 +6,125 @@
     android:background="#b3000000"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="350dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:id="@+id/main_line"
-        android:background="@color/white"
+        android:background="@mipmap/huodongxiangqing"
         android:layout_centerInParent="true"
         android:orientation="vertical">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:background="@color/colorAccent"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            android:background="@mipmap/qizi"
+            android:layout_gravity="center"
             android:gravity="center"
-            android:textSize="14sp"
-            android:textColor="@color/white"
-            android:text="活动详情"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:text="活动时间"/>
-            <TextView
-                android:id="@+id/edit_01"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/bet_edit_bg"
-                android:inputType="number"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:hint="输入活动时间"/>
+            android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:text="活动时间"/>
+                    <TextView
+                        android:id="@+id/edit_01"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="20dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bet_edit_bg"
+                        android:inputType="number"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:hint="输入活动时间"/>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:text="活动对象"/>
+                    <TextView
+                        android:id="@+id/edit_02"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="20dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bet_edit_bg"
+                        android:inputType="number"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:hint="输入活动对象"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:text="活动内容"/>
+                    <TextView
+                        android:id="@+id/edit_03"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="120dp"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/bet_edit_bg"
+                        android:inputType="textMultiLine"
+                        android:minLines="3"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:textColor="#737171"
+                        android:textSize="14sp"
+                        android:hint="输入活动内容"/>
+
+                </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:text="活动对象"/>
-            <TextView
-                android:id="@+id/edit_02"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="40dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/bet_edit_bg"
-                android:inputType="number"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:hint="输入活动对象"/>
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:text="活动内容"/>
-            <TextView
-                android:id="@+id/edit_03"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="150dp"
-                android:gravity="center_vertical"
-                android:background="@drawable/bet_edit_bg"
-                android:inputType="textMultiLine"
-                android:minLines="3"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                android:textColor="#737171"
-                android:textSize="14sp"
-                android:hint="输入活动内容"/>
-
-        </LinearLayout>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginTop="30dp"
             android:gravity="center">
             <Button
                 android:id="@+id/sure"
                 android:layout_width="250dp"
                 android:layout_height="40dp"
-                android:background="@drawable/login_but_bg"
+                android:background="@mipmap/shengqin_icon"
                 android:layout_gravity="center"
-                android:textColor="@color/white"
+                android:textColor="@color/red"
                 android:text="申请"/>
         </RelativeLayout>
 
@@ -139,7 +137,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_line"
-        android:src="@mipmap/xieyiclose"
+        android:src="@mipmap/black_icon"
         android:layout_marginTop="40dp"
         android:layout_centerHorizontal="true"
         android:tint="@color/white" />
