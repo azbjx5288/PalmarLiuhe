@@ -163,6 +163,7 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
 
     @Override
     protected void fetchData() {
+        webPresenter.getEgurl();
         speciesclasstypePresenter.getType();
     }
 
@@ -196,6 +197,7 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
                 }
             });
             webPresenter.getEgurl();
+            speciesclasstypePresenter.getType();
         }
     }
 
@@ -207,6 +209,7 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
 
         if(hasCheakced){
             webPresenter.getEgurl();
+            speciesclasstypePresenter.getType();
             return;
         }
 
@@ -228,9 +231,13 @@ public class BetFrameFragment extends BaseMvpFragment<BaseView<List<Speciesclass
                    showContent(webEntity);
                 }
             });
+            speciesclasstypePresenter = new SpeciesclasstypePresenter();
+            speciesclasstypePresenter.attachView(this);
             webPresenter.getEgurl();
+            speciesclasstypePresenter.getType();
         }else{
             webPresenter.getEgurl();
+            speciesclasstypePresenter.getType();
         }
     }
 

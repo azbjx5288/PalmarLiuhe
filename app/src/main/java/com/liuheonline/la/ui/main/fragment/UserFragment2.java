@@ -185,7 +185,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         getCardPresenter.attachView(new BaseView<List<BankCardEntity>>() {
             @Override
             public void onLoading() {
-                waitDialog.showDialog();
+//                waitDialog.showDialog();
             }
 
             @Override
@@ -769,7 +769,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
                 login_register.setVisibility(View.GONE);
 //                loginRelative.setVisibility(View.GONE);
 //                userRefreshView.setVisibility(View.VISIBLE);
-                presenter.getUserInfo(userId);
+           /*     presenter.getUserInfo(userId);*/
                 signStatusPresenter.signStatus();
             } else {
 //                loginRelative.setVisibility(View.VISIBLE);
@@ -881,7 +881,7 @@ public class UserFragment2 extends BaseMvpFragment<BaseView<UserInfo>, UserInfoP
         mUserInfoPresenter2.attachView(new BaseView<UserInfo>() {
             @Override
             public void onLoading() {
-                waitDialog.showDialog();
+//                waitDialog.showDialog();
             }
 
             @Override
