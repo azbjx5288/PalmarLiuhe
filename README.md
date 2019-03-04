@@ -7,17 +7,12 @@
 软件架构说明
 
 
-#### 安装教程
-
-1. xxxx
-2. xxxx
-3. xxxx
 
 #### 使用说明
 
-1. xxxx
-2. xxxx
-3. xxxx
+1. windows系统
+2. Androidstudio 3.3.1
+
 
 #### 参与贡献
 
@@ -44,6 +39,6 @@
 
 
 ####  主要接口：
-1.账户充值：api.6he.la:1688/api/memberpayment?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
-2.活动中心：api.6he.la:1688/api/Activify?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
+1. 账户充值：api.6he.la:1688/api/memberpayment?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
+2. 活动中心：api.6he.la:1688/api/Activify?token=9A1FBC69-8482-58D3-0458-FC990AB3B72C
 

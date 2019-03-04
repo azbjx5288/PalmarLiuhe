@@ -11,7 +11,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 27
         versionCode 54
-        versionName "1.6.0"
+        versionName "1.6.9"
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -53,11 +53,11 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-      /*  def APKName = "PalmarLiuhe"
+        def APKName = "PalmarLiuhe"
         def fileName = ""
         applicationVariants.all { variant ->
 //            variant.getPackageApplication().outputDirectory = new File("/apk/${variant.buildType.name}/${defaultConfig.versionName}")
-           *//* variant.outputs.all { output ->
+     /*       variant.outputs.all { output ->
                 def outputFile = output.outputFile
                 if (outputFile != null && outputFile.name.endsWith('.apk')) {
                     def versionName
@@ -71,11 +71,11 @@ android {
                         outputFileName = fileName
                     }
                 }
-            }*//*
+            }*/
             variant.outputs.all {
                 outputFileName =APKName + "_${variant.versionCode}-${variant.versionName}-${releaseTime()}.apk"
             }
-        }*/
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
